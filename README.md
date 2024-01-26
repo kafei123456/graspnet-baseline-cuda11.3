@@ -1,5 +1,5 @@
 # GraspNet Baseline
-Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping" (CVPR 2020).
+A PyTorch implementation of Graspnet-baseline. [Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping" (CVPR 2020).]
 
 [[paper](https://openaccess.thecvf.com/content_CVPR_2020/papers/Fang_GraspNet-1Billion_A_Large-Scale_Benchmark_for_General_Object_Grasping_CVPR_2020_paper.pdf)]
 [[dataset](https://graspnet.net/)]
@@ -33,7 +33,7 @@ Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Objec
 1、Get the code.
 ```bash
 https://github.com/kafei123456/graspnet-baseline-cuda11.3.git
-cd graspnet-baseline
+cd graspnet-baseline-cuda11.3
 ```
 2、Compile and install pointnet2 operators (code adapted from [votenet](https://github.com/facebookresearch/votenet)).
 ```bash
