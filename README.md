@@ -14,56 +14,41 @@ Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Objec
 </div>
 
 ![teaser](doc/teaser.png)
-
+## Myhardware environment
+- NVIDIA RTX 4090
+- Ubuntu
+- anaconda 3
 ## Requirements
-- Python 3
-- PyTorch 1.6
-- Open3d >=0.8
+- Python 3.8
+- PyTorch 1.12
+- Open3d 0.15.2
 - TensorBoard 2.3
-- NumPy
-- SciPy
-- Pillow
-- tqdm
+- NumPy 1.23.5
+- SciPy 1.10.1
+- Pillow 10.2.0
+- tqdm 4.66.1
 
 ## Installation
-Get the code.
+1、Get the code.
 ```bash
 git clone https://github.com/graspnet/graspnet-baseline.git
 cd graspnet-baseline
 ```
-Install packages via Pip.
-```bash
-pip install -r requirements.txt
-```
-Compile and install pointnet2 operators (code adapted from [votenet](https://github.com/facebookresearch/votenet)).
+2、Compile and install pointnet2 operators (code adapted from [votenet](https://github.com/facebookresearch/votenet)).
 ```bash
 cd pointnet2
 python setup.py install
 ```
-Compile and install knn operator (code adapted from [pytorch_knn_cuda](https://github.com/chrischoy/pytorch_knn_cuda)).
+3、Compile and install knn operator (code adapted from [knn_cuda](https://github.com/unlimblue/KNN_CUDA)).
 ```bash
-cd knn
-python setup.py install
+cd KNN_CUDA
+make && make install
 ```
-Install graspnetAPI for evaluation.
+4、Install graspnetAPI for evaluation.
 ```bash
 git clone https://github.com/graspnet/graspnetAPI.git
 cd graspnetAPI
 pip install .
-```
-
-## Tolerance Label Generation
-Tolerance labels are not included in the original dataset, and need additional generation. Make sure you have downloaded the orginal dataset from [GraspNet](https://graspnet.net/). The generation code is in [dataset/generate_tolerance_label.py](dataset/generate_tolerance_label.py). You can simply generate tolerance label by running the script: (`--dataset_root` and `--num_workers` should be specified according to your settings)
-```bash
-cd dataset
-sh command_generate_tolerance_label.sh
-```
-
-Or you can download the tolerance labels from [Google Drive](https://drive.google.com/file/d/1DcjGGhZIJsxd61719N0iWA7L6vNEK0ci/view?usp=sharing)/[Baidu Pan](https://pan.baidu.com/s/1HN29P-csHavJF-R_wec6SQ) and run:
-```bash
-mv tolerance.tar dataset/
-cd dataset
-tar -xvf tolerance.tar
 ```
 
 ## Training and Testing
@@ -91,42 +76,10 @@ A demo program is provided for grasp detection and visualization using RGB-D ima
 
 __Try your own data__ by modifying `get_and_process_data()` in [demo.py](demo.py). Refer to [doc/example_data/](doc/example_data/) for data preparation. RGB-D images and camera intrinsics are required for inference. `factor_depth` stands for the scale for depth value to be transformed into meters. You can also add a workspace mask for denser output.
 
-## Results
-Results "In repo" report the model performance with single-view collision detection as post-processing. In evaluation we set `--collision_thresh` to 0.01.
-
-Evaluation results on RealSense camera:
-|          |        | Seen             |                  |        | Similar          |                  |        | Novel            |                  | 
-|:--------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|
-|          | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> |
-| In paper | 27.56  | 33.43            | 16.95            | 26.11  | 34.18            | 14.23            | 10.55  | 11.25            | 3.98             |
-| In repo  | 47.47  | 55.90            | 41.33            | 42.27  | 51.01            | 35.40            | 16.61  | 20.84            | 8.30             |
-
-Evaluation results on Kinect camera:
-|          |        | Seen             |                  |        | Similar          |                  |        | Novel            |                  | 
-|:--------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|:------:|:----------------:|:----------------:|
-|          | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> | __AP__ | AP<sub>0.8</sub> | AP<sub>0.4</sub> |
-| In paper | 29.88  | 36.19            | 19.31            | 27.84  | 33.19            | 16.62            | 11.51  | 12.92            | 3.56             |
-| In repo  | 42.02  | 49.91            | 35.34            | 37.35  | 44.82            | 30.40            | 12.17  | 15.17            | 5.51             |
 
 ## Citation
 Please cite our paper in your publications if it helps your research:
 ```
-@article{fang2023robust,
-  title={Robust grasping across diverse sensor qualities: The GraspNet-1Billion dataset},
-  author={Fang, Hao-Shu and Gou, Minghao and Wang, Chenxi and Lu, Cewu},
-  journal={The International Journal of Robotics Research},
-  year={2023},
-  publisher={SAGE Publications Sage UK: London, England}
-}
-
-@inproceedings{fang2020graspnet,
-  title={GraspNet-1Billion: A Large-Scale Benchmark for General Object Grasping},
-  author={Fang, Hao-Shu and Wang, Chenxi and Gou, Minghao and Lu, Cewu},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition(CVPR)},
-  pages={11444--11453},
-  year={2020}
-}
+https://github.com/unlimblue/KNN_CUDA
+https://github.com/graspnet/graspnet-baseline
 ```
-
-## License
-All data, labels, code and models belong to the graspnet team, MVIG, SJTU and are freely available for free non-commercial use, and may be redistributed under these conditions. For commercial queries, please drop an email at fhaoshu at gmail_dot_com and cc lucewu at sjtu.edu.cn .
