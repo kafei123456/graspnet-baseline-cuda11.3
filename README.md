@@ -79,8 +79,9 @@ __Try your own data__ by modifying `get_and_process_data()` in [demo.py](demo.py
 
 ## Some Tips
 Some solutions to errors：
-```
+
 1、AttributeError: module 'numpy' has no attribute 'float'.`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+```
 solution: pip install numpy==1.23.5        
 ```
 
