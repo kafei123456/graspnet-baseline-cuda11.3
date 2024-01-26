@@ -76,9 +76,15 @@ A demo program is provided for grasp detection and visualization using RGB-D ima
 
 __Try your own data__ by modifying `get_and_process_data()` in [demo.py](demo.py). Refer to [doc/example_data/](doc/example_data/) for data preparation. RGB-D images and camera intrinsics are required for inference. `factor_depth` stands for the scale for depth value to be transformed into meters. You can also add a workspace mask for denser output.
 
+## Some Tips
+Some solutions to errors：
+```
+1、AttributeError: module 'numpy' has no attribute 'float'.`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+solution: pip install numpy==1.23.5        
+```
 
 ## Citation
-Please cite our paper in your publications if it helps your research:
+Thanks for the following excellent work：
 ```
 https://github.com/unlimblue/KNN_CUDA
 https://github.com/graspnet/graspnet-baseline
