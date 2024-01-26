@@ -31,7 +31,7 @@ Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Objec
 ## Installation
 1、Get the code.
 ```bash
-git clone https://github.com/graspnet/graspnet-baseline.git
+https://github.com/kafei123456/graspnet-baseline-cuda11.3.git
 cd graspnet-baseline
 ```
 2、Compile and install pointnet2 operators (code adapted from [votenet](https://github.com/facebookresearch/votenet)).
