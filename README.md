@@ -18,6 +18,7 @@ Baseline model for "GraspNet-1Billion: A Large-Scale Benchmark for General Objec
 - NVIDIA RTX 4090
 - Ubuntu
 - anaconda 3
+- CUDA 11.3
 ## Requirements
 - Python 3.8
 - PyTorch 1.12
